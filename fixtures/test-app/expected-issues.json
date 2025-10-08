@@ -1,0 +1,53 @@
+{
+  "description": "Expected tenant isolation issues in test fixture",
+  "issues": [
+    {
+      "type": "missing_tenant_filter",
+      "severity": "high",
+      "endpoint": "list_users_bad",
+      "file": "routes.py",
+      "model": "User",
+      "description": "Queries User table without workspace_id filter"
+    },
+    {
+      "type": "missing_tenant_dependency",
+      "severity": "high",
+      "endpoint": "list_projects_no_auth",
+      "file": "routes.py",
+      "model": "Project",
+      "description": "Accesses tenant-scoped table without workspace dependency"
+    },
+    {
+      "type": "missing_tenant_filter",
+      "severity": "high",
+      "endpoint": "list_projects_missing_filter",
+      "file": "routes.py",
+      "model": "Project",
+      "description": "Has workspace dependency but doesn't use it in query filter"
+    },
+    {
+      "type": "missing_tenant_filter",
+      "severity": "critical",
+      "endpoint": "update_project_bad",
+      "file": "routes.py",
+      "model": "Project",
+      "description": "Update query doesn't verify workspace_id - allows cross-tenant modification"
+    },
+    {
+      "type": "missing_tenant_filter",
+      "severity": "critical",
+      "endpoint": "delete_user_bad",
+      "file": "routes.py",
+      "model": "User",
+      "description": "Delete query missing both workspace dependency and filter - allows cross-tenant deletion"
+    }
+  ],
+  "safe_endpoints": [
+    "list_users_good",
+    "list_projects_safe",
+    "update_project_safe",
+    "list_feature_flags",
+    "admin_list_all_users",
+    "delete_user_safe"
+  ]
+}

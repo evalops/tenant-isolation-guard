@@ -1,0 +1,8 @@
+{
+  "tenant_markers": ["workspace_id", "tenant_id", "org_id"],
+  "global_tables": ["feature_flags", "audit_logs", "system_config"],
+  "tenant_dependencies": ["Depends(get_current_workspace)", "Depends(get_tenant)", "Depends(require_workspace)"],
+  "admin_dependencies": ["Depends(require_admin)", "Depends(is_admin)"],
+  "admin_route_prefixes": ["/admin", "/internal", "/system"],
+  "ignore_patterns": ["# tenant-guard: ignore", "# codex-ignore: tenant"]
+}

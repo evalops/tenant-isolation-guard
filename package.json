@@ -1,0 +1,32 @@
+{
+  "name": "tenant-isolation-guard",
+  "version": "0.2.0",
+  "description": "Detect missing tenant isolation in multi-tenant FastAPI apps using Codex SDK",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "tenant-guard": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:test": "tsc -p tsconfig.test.json",
+    "check": "npm run build && node dist/index.js",
+    "test": "npm run build:test && node --test dist-test/tests/*.test.js",
+    "test:unit": "npm run build:test && node --test dist-test/tests/unit.test.js",
+    "test:integration": "npm run build:test && node --test dist-test/tests/integration.test.js",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist dist-test"
+  },
+  "keywords": ["codex", "tenant", "isolation", "multi-tenant", "saas", "fastapi", "security", "typescript"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@openai/codex-sdk": "^0.45.0",
+    "dotenv": "^17.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
